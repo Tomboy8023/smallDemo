@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>测试专用</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#nav{
+				width: 100%;
+				height: 5%;
+				background-color: yellow;
+				position: absolute;
+				top: 0rem;
+			}
+			#container {
+				width: 100%;
+				height: 95%;
+				background-color: black;
+				position: fixed;
+				bottom: 0rem;
+			}
+			ul {
+				list-style-type: none;
+				height: 100%;
+			}
+			li {
+				width: 19%;
+				height: 100%;
+				float: left;
+				text-align: center;
+				font-size: 2rem;
+				border-left: solid 15.8px red;
+				padding-left: 2px;
+			}
+			a {
+				text-decoration: none;
+				color: black;
+			}
+			.click-style {
+
+				background-color: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav id="nav">
+			<ul>
+				<li><a href="#">DMB</a></li>
+				<li><a href="#">tsm</a></li>
+<!-- 				<li><a href="#">Tomboy</a></li> -->
+				<li><a href="#">不知火舞</a></li>
+				<li><a href="#">火灵儿</a></li>
+				<li><a href="#">王昭君</a></li>
+			</ul>
+		</nav>
+		<div id="container">
+		</div>
+
+		<script type="text/javascript">
+			const li_list = document.getElementsByTagName('li');
+
+			for(let i=0; i < li_list.length; i++){
+				li_list[i].onclick = function() {
+					console.log(li_list[i])
+					for(let j=0; j < li_list.length; j++){
+						li_list[j].className = '';
+					}
+					this.className = 'click-style';
+				}
+			}
+		</script>
+	<body>
+</html>
