@@ -41,6 +41,10 @@
                 console.log("请求还未完成");  // 请求还未完成处理
             }
         }
+
+    xhr.onerror = () => {
+        console.log("网络中断了，服务器不能完成响应");
+    }
     </script>
 </body>
 </html>
