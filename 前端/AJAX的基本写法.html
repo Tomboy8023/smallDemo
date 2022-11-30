@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-study</title>
+</head>
+<body>
+    <script>
+        // 状态码打印是为了学习，因为我看的视频里老师说不能打印出AJAX请求状态码中的 0
+        
+        const uname = 'Tomboy';
+        var xhr = new XMLHttpRequest();  // 创建AJAX请求对象
+
+        console.log('1-', xhr.readyState);  // 打印请求状态码
+
+        url = 'http://httpbin.org/post/404';
+        xhr.open('POST', url);              // 设置请求方式和请求地址
+
+        console.log("2-", xhr.readyState);  // 打印请求状态码
+
+        xhr.send();                         // 发送请求
+
+        console.log('3-', xhr.readyState);  // 打印请求状态码
+
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){  
+                    // 此处可以编写响应成功后的业务代码
+                    console.log(xhr.readyState);  // 打印请求状态码
+                    console.log(JSON.parse(xhr.responseText));  // 将响应数据转换成JSON
+                }else{
+                    // 此处可以编写响应失败后的处理业务逻辑
+                    console.log(xhr.response)
+                    console.log("请求已完成，但请求失败了");  // 请求失败处理
+                }
+            }else{
+                // 如果业务需要，可以在这里编写请求过程中的业务逻辑
+                console.log(xhr);
+                console.log("请求还未完成");  // 请求还未完成处理
+            }
+        }
+    </script>
+</body>
+</html>
