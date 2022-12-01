@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-study</title>
+</head>
+<body>
+    <button onclick=get_data()>按钮</button>
+    <script>
+        function AJAX(options) {
+            let defaults = {
+                type: 'get',
+                url: '',
+                success: () => {},
+                error: () => {}
+            }
+            Object.assign(defaults, options);
+
+            defaults.type = defaults.type.toUpperCase();  // 转换HTTP动词的大小写
+
+            var xhr = new XMLHttpRequest();  // 构建AJAX对象
+
+
+            params = '';  // 请求参数
+            for(let key in defaults.data){
+                value = defaults.data[key];
+
+                params += key + "=" + value + "&";  // 生成字符串参数
+            }
+            params = params.substr(0, params.length - 1);  // 去掉字符串参数末尾多余的&
+            if(defaults.type == 'GET'){
+                defaults.url += "?" + params;  // 将params拼接到url后面
+            }
+
+            xhr.open(defaults.type, defaults.url);  // 设置请求方式和url
+
+
+            if(defaults.type == 'POST'){
+                if(defaults.post_string){  // 设置post请求的请求头
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                }
+                else{
+                    params = JSON.stringify(defaults.data); // 将JSON数据转换成字符串
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                }
+                xhr.send(params);  // 发送POST请求
+            }
+            if(defaults.type == 'GET'){
+                xhr.send();  // 发送GET请求
+            }
+
+
+            // 响应的封装
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        defaults.success(xhr.responseText);  // 请求成功的封装
+                    }else{
+                        defaults.error(xhr.status);  // 请求失败的封装
+                    }
+                }
+            }
+            xhr.onerror = () => {
+                defaults.error("网络不佳");  // 网络不通的封装
+            }
+        }
+
+        function get_data(){
+            AJAX({
+                type: 'post',
+                url: 'http://httpbin.org/post',
+                success: (data) => {
+                    console.log("成功--------------------", data);
+                },
+                error: (data) => {
+                    console.log("请求失败" + data);
+                }
+            });
+
+            AJAX({
+                url: 'http://httpbin.org/get',
+                data: {
+                    'name': 'Timi',
+                    'pwd': '8023'
+                },
+                success: (data) => {
+                    console.log("成功--------------------", data);
+                },
+                error: (data) => {
+                    console.log("请求失败" + data);
+                }
+            });
+            
+        }
+    </script>
+</body>
+</html>
