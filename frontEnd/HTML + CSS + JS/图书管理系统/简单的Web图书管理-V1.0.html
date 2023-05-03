@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简易图书管理</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 860px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .t-head {
+        height: 100px;
+        background-color: #f2dcab;
+        font-size: 20px;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .form-control {
+        height: 60px;
+        line-height: 60px;
+        border-bottom: 1px solid #e7b053;
+      }
+      label {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      input {
+        height: 30px;
+        border: 1px solid #ccc;
+        padding: 0 5px;
+        font-size: 14px;
+        border-radius: 8px;
+        text-align: center;
+        outline: none;
+      }
+      #index {
+        width: 60px;
+      }
+      #index::placeholder,
+      #name::placeholder,
+      #author::placeholder {
+        color: #ccc;
+      }
+      #index::placeholder {
+        text-align: center;
+      }
+      #name::placeholder,
+      #author::placeholder {
+        padding-left: 15px;
+      }
+      #name {
+        width: 300px;
+
+      }
+      #author {
+        width: 120px;
+      }
+      button {
+        width: 75px;
+        height: 30px;
+        background-color: #2080f0;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+      }
+      .count {
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      th {
+        background-color: #ffa601;
+        border: 1px solid #ffa601;
+        font-size: 25px;
+      }
+      td {
+        height: 40px;
+        border-color: #e3c793;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="t-head">
+        <div class="form-control">
+          <label for="index">编号：</label>
+          <input type="text" id="index" placeholder="图书编号" />
+
+          <label for="name">书名：</label>
+          <input type="text" id="name" placeholder="请输入图书名称" />
+
+          <label for="author">作者：</label>
+          <input type="text" id="author" placeholder="作者名称" />
+
+          <button>提交</button>
+        </div>
+        <div class="count">
+            图书总数量：<span id="num">1</span>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>作者</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>《西游记》</td>
+            <td>吴承恩</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+        let index = document.querySelector("#index")  // 获取页面元素
+        let bookName = document.querySelector("#name")
+        let author = document.querySelector("#author")
+        let btn = document.querySelector('button')
+        let num = document.querySelector("#num")
+        let tbody = document.querySelector("tbody")
+
+        let bookArr = []
+
+        initBookArr()
+
+        function initBookArr() {  // 初始化数组
+            let bookIndex = tbody.querySelector('tr > td:nth-child(1)').innerText
+            let bookName = tbody.querySelector('tr > td:nth-child(2)').innerText
+            let bookAuthor = tbody.querySelector("tr > td:nth-child(3)").innerText
+
+            let book = {
+                index: bookIndex,
+                name: bookName,
+                author: bookAuthor
+            }
+            bookArr.push(book)
+        }
+
+        function render() {
+            tbody.innerHTML = ""
+            for(let i = 0; i < bookArr.length; i++) { // 遍历数组，将数组中的数据渲染到页面中
+                let tr = document.createElement("tr")
+                let indexTd = document.createElement("td")
+                let bookNameTd = document.createElement("td")
+                let authorTd = document.createElement("td")
+                indexTd.innerText = bookArr[i].index
+                bookNameTd.innerText = bookArr[i].name
+                authorTd.innerText = bookArr[i].author
+                tr.appendChild(indexTd)
+                tr.appendChild(bookNameTd)
+                tr.appendChild(authorTd)
+                tbody.appendChild(tr)
+            }
+        }
+
+        btn.addEventListener("click", function() {
+            if(index.value.trim() === "" || bookName.value.trim() === "" || author.value.trim() === "") {
+                alert("请输入完整的图书信息")  // 如果信息不全，弹出提示框
+                return
+            }
+
+            let book = {  // 书本对象
+                index: index.value.trim(),
+                name: "《" + bookName.value.trim() + "》",
+                author: author.value.trim()
+            }
+
+            bookArr.push(book)  //  添加书本信息到数组中
+
+            num.innerHTML = bookArr.length  // 重新计算书本数量
+
+            index.value = ""  // 清空输入框
+            bookName.value = ""
+            author.value = ""
+
+            render()  // 重新渲染表格
+        })
+    </script>
+</body>
+</html>
