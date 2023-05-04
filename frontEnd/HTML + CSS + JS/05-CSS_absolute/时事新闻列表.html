@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>时事新闻</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                font-size: 14px;
+                background-color: #f1f1f1;
+            }
+			/*
+            ul{
+                margin: 50px auto;
+                width: 700px;
+            }
+			下面有更好的方式去进行居中
+			*/
+            li{
+                list-style: none;
+                display: inline-block;
+                width: 288px;
+                line-height: 34px;
+                margin-right: 59px;
+            }
+            span{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center; /* span标签共有的属性，直接span */
+                margin-right: 8px;
+                color: #fff;
+                font-size: 12px;
+                background-repeat: no-repeat;
+            }
+            .first-span{
+                background-image: url("./img/tp1.png");
+            }
+            .second-span{
+                background-image: url("./img/tp2.png");
+            }
+            .third-span{
+                background-image: url("./img/tp3.png");
+            }
+            .other-span{
+                background-image: url("./img/tp4.png");
+                color: #9195ab;
+            }
+            a{
+                text-decoration: none;
+                color: #333;
+                position: relative;
+            }
+            a:hover{
+                color: red;
+            }
+            img{
+                margin-left: 4px;
+                position: absolute;
+                bottom: 0;
+            }
+			
+			/* 居中代码 */
+			.content {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+        </style>
+    </head>
+
+    <body>
+        <div class="content">
+			<ul>
+				<li><span class="first-span">1</span><a href="#">不要在水龙头下直接冲洗生肉制品<img src="./img/tp_hot.png" /></a></li>
+				<li><span class="other-span">4</span><a href="#">钟南山空降北京系谣言</a></li>
+				<li><span class="second-span">2</span><a href="#">吴尊友称北京疫情已经控制住了<img src="img/tp_new.png" /></a></li>
+				<li><span class="other-span">5</span><a href="#">唐禹哲承认恋情</a></li>
+				<li><span class="third-span">3</span><a href="#">张若昀回应涉1.4亿违约纠纷</a></li>
+				<li><span class="other-span">6</span><a href="#">北京一餐馆7人确诊新冠肺炎</a></li>
+			</ul>
+		</div>
+    </body>
+</html>
