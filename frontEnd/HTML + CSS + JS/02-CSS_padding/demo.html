@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>padding的使用</title>
+        <style>
+            div {
+                border-top: 3px solid #ff8500;
+                border-bottom: 1px solid #edeef0;
+                background-color: #fcfcfc;
+                height: 41px;
+                line-height: 41px;
+            }
+            a {
+                display: inline-block;
+                color: #4c4c4c;
+                text-decoration: none;
+                font-size: 12px;
+                height: 41px;
+                padding: 0 20px;
+
+            }
+            a:hover {
+                background-color: #eee;
+                color: #ff8500;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--
+            1.橙色条：给一个div，设置div的border-top
+            2.文字部分，每一个都是一个a标签，因为范围点击，设置inline-block
+            3.inline-block的盒子宽高，通过padding撑开
+        -->
+        <div>
+            <a href="#">设为首页</a>
+            <a href="#">手机新浪网</a>
+            <a href="#">移动客户端</a>
+            <a href="#">博客</a>
+            <a href="#">微博</a>
+            <a href="#">关注我</a>
+        </div>
+    </body>
+</html>
