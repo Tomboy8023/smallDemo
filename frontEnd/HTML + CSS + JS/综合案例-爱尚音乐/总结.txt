@@ -1,4 +1,13 @@
 只响应第一次点击代码
+let isFirst = true
+$('.btn-play').on('click', function () {
+    if (isFirst) {
+        isFirst = false
+        // do something
+    } else {
+    console.log('非第一次点击')
+    }
+})
 
 在案例中，播放音乐-头像旋转，暂停播放-头像静止（实时），而不是充值为rotate(0deg)
 是因为加了两个className，active处于播放状态，deactive处于静止状态，同时拥有时，会执行deactive
@@ -18,3 +27,6 @@ audio相关，如果确认代码没问题，切歌或者播放有问题，试着
 
     简单动画animation的使用
     非常简单的动画，比如两个状态之间的切换过程用动画表示可以用transition，但是如果是多个状态之间的切换，就需要用animation
+
+
+最后奉上B站视频地址：https://www.bilibili.com/video/BV1qb4y1r7zd
