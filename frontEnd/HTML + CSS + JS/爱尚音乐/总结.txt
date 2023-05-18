@@ -1,0 +1,20 @@
+只响应第一次点击代码
+
+在案例中，播放音乐-头像旋转，暂停播放-头像静止（实时），而不是充值为rotate(0deg)
+是因为加了两个className，active处于播放状态，deactive处于静止状态，同时拥有时，会执行deactive
+
+audio相关，如果确认代码没问题，切歌或者播放有问题，试着加一个audio.load()
+    暂停播放后续播：一定要保证audio.src没有重新赋值，否则会重新加载音频
+    可以在暂停后保存一个audio.currentTime，然后再次播放前，audio.currentTime = xxx
+
+    jQuery中固定写法：mp3.get(0).currentTime    get(0)固定写法，将jQuery对象转换为DOM对象（JS对象）
+
+************写代码前先写伪代码，然后填空编程***********
+
+
+杂碎知识
+    jQuery自动触发事件：trigger方法，可以传两个参数，第一个是事件名，第二个是事件对象
+    判断是手动触发还是自动触发：event.isTrigger
+
+    简单动画animation的使用
+    非常简单的动画，比如两个状态之间的切换过程用动画表示可以用transition，但是如果是多个状态之间的切换，就需要用animation
