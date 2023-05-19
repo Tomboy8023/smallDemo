@@ -1,0 +1,121 @@
+/* 采用什么编码解析文件 */
+@charset "utf-8";
+
+body {
+	background: url(../img/bg.gif) no-repeat;/* 设置背景 不重复 */
+	background-size: cover;/* 自适应 */
+}
+
+/* banner begin */
+.banner {
+	width: 960px;/* 宽 */
+	height: 250px;/* 高 */
+	background: url(../img/m_bg.jpg) no-repeat;/* 设置背景 */
+	margin: 80px;/* 外边距 */
+	opacity: 0.8;/* 透明度 */
+	box-shadow: 10px 15px 15px 1px black;/* 阴影部分 */
+	position: relative;/* 相对定位，让自己的子元素相对于其父元素定位 */
+}
+
+.banner ul li {
+	list-style: none;/* 移除无序列表的默认列表样式 */
+	display: inline-block;/* 行内块状元素，实现类似导航栏的效果 */
+	position: absolute;/* 绝对定位，由于父元素使用了相对定位，所以相对父元素定位 */
+}
+
+.banner ul li img {
+	border-radius: 50%;/* 边角变圆角 */
+	cursor: pointer;/* 鼠标变手势 */
+}
+
+/* 使用类选择器，改变图片位置 */
+.m1 {top: 30px;left: 90px;}
+.m2 {top: 140px;left: 160px;}
+.m3 {top: 67px;left: 308px;}
+.m4 {top: 50px;left: 500px;}
+.m5 {top: 160px;left: 580px;}
+
+/* 图片旋转动画 */
+@keyframes img_rotate{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+/* 动画执行时间 次数 */
+.banner .img_rotate {
+	animation: img_rotate 2s infinite linear;
+}
+/* banner end */
+
+/* music begin */
+.music {
+	width: 550px;/* 宽 */
+	height: 120px;/* 高 */
+	background: black;/* 背景色 */
+	position: fixed;/* 相对浏览器绝对定位 */
+	left: 0px;
+	bottom: 50px;
+	opacity: 0.8;/* 透明度 */
+	box-shadow: 10px 15px 15px 1px black;/* 阴影部分 */
+}
+
+.music .m_img {
+	float: left;/* 左浮动 */
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.music .m_text {
+	float: left;/* 左浮动 */
+	color: white;/* 字体颜色 */
+	font-size: 20px;/* 字体大小 */
+	font-weight: bold;/* 字体加粗 */
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+.music .m_btn {
+	float: left;/* 左浮动 */
+	/* 绝对定位，防止歌曲名称过长挤出按钮，div发生样式改变 */
+	position: absolute;
+	left: 320px;
+}
+
+.music .m_btn a {
+	float: left;/* 左浮动 */
+	width: 35px;/* 宽度 */
+	height: 35px;/* 高度 */
+	background: url(../img/player_bg.png) no-repeat;/* 背景图片 */
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+/* 上一首暂停下一首样式 */
+.music .m_btn .m_prev {background-position: -68px 0px;}
+.music .m_btn .m_play {background-position: -104px -5px;}
+.music .m_btn .m_next {background-position: -145px 0px;}
+/* 鼠标悬浮改变上一首暂停下一首样式 */
+.music .m_btn .m_prev:hover {background-position: -68px -32px;}
+.music .m_btn .m_play:hover {background-position: -104px -47px;}
+.music .m_btn .m_next:hover {background-position: -145px -32px;}
+
+.music .m_close {
+	float: right;/* 右浮动 */
+	width: 23px;/* 宽度 */
+	height: 120px;/* 高度 */
+	background: url(../img/player_bg.png) no-repeat;/* 设置背景 */
+	cursor: pointer;/* 鼠标变手势 */
+	margin-top: 2px;
+}
+
+/* 暂停按钮的样式，js动态替换使用 */
+.music .m_btn .m_pause {background-position: -292px -93px;}
+.music .m_btn .m_pause:hover {background-position: -334px -93px;}
+
+/* 隐藏播放器的样式，js动态替换使用 */
+.music .m_open {background-position: -45px 0px;}
+/* music end */
