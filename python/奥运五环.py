@@ -1,3 +1,5 @@
+# author：Tomboy
+
 import turtle
 
 turtle.pensize(10)  # 设置笔头粗细
