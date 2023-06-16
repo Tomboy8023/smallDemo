@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<span>发送验证码</span>
+	<button id="btn">点我发送验证码</button>
+	<script>
+		let span = document.querySelector('span')
+		btn.addEventListener('click', double(5000))
+
+		function double(delay) {
+			let timer = null
+			let isFirst = true
+			return function() {
+				if(isFirst) {
+					isFirst = false
+					btn.disabled = true
+					let timeSum = 5
+					let timer2 = setInterval(function(){
+						span.innerText = `0${timeSum}后重新获取`
+						if(timeSum == 0){
+							clearInterval(timer2)
+							span.innerText = "重新获取验证码"
+							btn.disabled = false
+						}
+						--timeSum
+					}, 1000)
+				}
+				if(!timer) {
+					timer = setTimeout(function(){
+						isFirst = true
+						timer = null
+					}, delay)
+				}
+			}
+		}
+	</script>
+</body>
+</html>
