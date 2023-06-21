@@ -1,3 +1,5 @@
+# author：Tomboy
+
 def getPosition(x, y):
     if(x > 0 and y > 0):
         return "第一象限"
